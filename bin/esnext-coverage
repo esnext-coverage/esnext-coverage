@@ -1,13 +1,7 @@
 #!/usr/bin/env node
 
-var fs = require('fs');
-var path = require('path');
-var chalk = require('chalk');
 var program = require('commander');
-
 var pkg = require('../package.json');
-var babelConfig = require('../lib/babel-config');
-var writeAndExit = require('../lib/output-writer');
 
 program.version(pkg.version);
 
@@ -15,117 +9,24 @@ program
   .command('cover <files>')
   .option('-f --format [formatter]', 'Format the result')
   .option('-o --out-file [file]', 'Write the result to a file')
-  .action(function (filesGlob, options) {
-    var glob = require('glob');
-
-    require('babel-register')(babelConfig.extendExistingBabelConfig(filesGlob));
-    glob(filesGlob, function (globErr, files) {
-      files.forEach(function (file) {
-        require(path.resolve(file));
-      });
-    });
-
-    process.on('beforeExit', function (exitCode) {
-      if (typeof __coverage__ !== 'object') {
-        console.error(chalk.red('Failed to generate coverage.'))
-        process.exit(exitCode ? exitCode : 1);
-      }
-      writeAndExit(exitCode, __coverage__, options);
-    });
-  });
+  .action(require('../lib/actions/cover'));
 
 program
   .command('instrument <files>')
   .option('-i --ignore <dir>', 'Basename to ignore')
   .option('-o --out-dir <dir>', 'Write instrumented files to a directory')
-  .action(function (filesGlob, options) {
-    var mkdirp = require('mkdirp');
-    var glob = require('glob');
-    var babel = require('babel-core');
-
-    if (!options.outDir) {
-      console.error(chalk.red(`\n  error: please specify ${chalk.underline('--out-dir')} option.\n`));
-      process.exit(1);
-    }
-
-    mkdirp(options.outDir, function (mkdirpErr) {
-      if (mkdirpErr) {
-        console.error(chalk.red(`Failed to create a directory ${options.outDir}`));
-        console.error(mkdirpErr);
-        process.exit(1);
-      }
-      glob(filesGlob, function (globErr, files) {
-        if (mkdirpErr) {
-          console.error(chalk.red(`Failed to glob ${filesGlob}`));
-          console.error(mkdirpErr);
-          process.exit(1);
-        }
-        files.forEach(function (file) {
-          babel.transformFile(file, babelConfig.extendBabelConfig({
-            code: true,
-            ast: false,
-            filename: file
-          }, filesGlob), function (babelErr, result) {
-            if (babelErr) {
-              console.error(chalk.red(`Failed to transform file ${file}`));
-              console.error(babelErr);
-              process.exit(1);
-            }
-            var ignored = file.replace(options.ignore + path.sep, '');
-            var filePath = path.resolve(options.outDir, ignored);
-            fs.writeFile(filePath, result.code, 'utf8', function (fileError) {
-              if (fileError) {
-                console.error(chalk.red(`Failed to write transformed file ${file}`));
-                console.error(fileError);
-                process.exit(1);
-              }
-            });
-          });
-        });
-      });
-    });
-  });
+  .action(require('../lib/actions/instrument'));
 
 program
   .command('collect [files]')
   .option('-f --format [formatter]', 'Format the result')
   .option('-o --out-file [file]', 'Write the result to a file')
-  .action(function (filesGlob, options) {
-    var glob = require('glob');
-    require('babel-register');
-    glob(filesGlob, function (globErr, files) {
-      files.forEach(function (file) {
-        require(path.resolve(file));
-      });
-    });
-
-    process.on('beforeExit', function (exitCode) {
-      if (typeof __coverage__ !== 'object') {
-        console.error(chalk.red('Failed to generate coverage.'))
-        process.exit(exitCode ? exitCode : 1);
-      }
-      writeAndExit(exitCode, __coverage__, options);
-    });
-  });
+  .action(require('../lib/actions/collect'));
 
 program
   .command('extract [coverage]')
   .option('-f --format [formatter]', 'Format the result')
   .option('-o --out-file [file]', 'Write the result to a file')
-  .action(function (coverageFile, options) {
-    var coverageFilePath = path.resolve(coverageFile);
-    fs.readFile(coverageFilePath, 'utf8', function (fileReadErr, coverageJSON) {
-      if (fileReadErr) {
-        console.error(chalk.red('Failed to read coverage file.'))
-        process.exit(1);
-      }
-      var coverage = JSON.parse(coverageJSON);
-      if (typeof coverage !== 'object') {
-        console.error(chalk.red('Coverage file is invalid.'))
-        process.exit(1);
-      }
-      writeAndExit(0, coverage, options);
-    });
-  });
+  .action(require('../lib/actions/extract'));
 
 program.parse(process.argv);
