@@ -1,0 +1,28 @@
+# Dependencies
+node_modules
+
+# Build
+/build/
+/reports/
+.tmp
+
+# Cache
+/cache/
+.eslintcache
+
+# Logs
+*.log
+/log/
+
+# Junk
+.DS_Store
+.idea
+
+#VS 2015 IDE
+Startup.cs
+project.json
+*.kproj
+*.kproj.user
+
+# Sublime projects
+*.sublime*
