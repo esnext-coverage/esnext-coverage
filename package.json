@@ -9,8 +9,11 @@
   "author": "Oleg Sklyanchuk <sklyanchuk@gmail.com> (http://olegskl.com)",
   "license": "MIT",
   "devDependencies": {
+    "babel-eslint": "^6.0.4",
     "chalk": "^1.1.3",
-    "commander": "^2.9.0"
+    "commander": "^2.9.0",
+    "eslint": "^2.11.1",
+    "eslint-config-meetic": "^2.0.0"
   },
   "dependencies": {
     "babel-plugin-transform-esnext-coverage": "^0.0.1",
