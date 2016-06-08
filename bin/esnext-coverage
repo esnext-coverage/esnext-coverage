@@ -13,7 +13,7 @@ program
 
 program
   .command('instrument <files>')
-  .option('-i --ignore <dir>', 'Basename to ignore')
+  .option('-b --base-dir <dir>', 'Base directory of files to instrument')
   .option('-o --out-dir <dir>', 'Write instrumented files to a directory')
   .action(require('../lib/actions/instrument'));
 
