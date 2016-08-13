@@ -2,8 +2,8 @@
   "name": "esnext-coverage",
   "version": "0.0.1",
   "description": "Modular coverage tools for the modern web",
-  "main": "index.js",
-  "bin": "./bin/esnext-coverage",
+  "main": "lib/esnext-coverage.js",
+  "bin": "bin/esnext-coverage",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -11,13 +11,13 @@
   "license": "MIT",
   "devDependencies": {
     "babel-eslint": "^6.0.4",
-    "chalk": "^1.1.3",
-    "commander": "^2.9.0",
     "eslint": "^2.11.1",
     "eslint-config-meetic": "^2.0.0"
   },
   "dependencies": {
     "babel-plugin-transform-esnext-coverage": "^0.0.1",
+    "chalk": "^1.1.3",
+    "commander": "^2.9.0",
     "glob": "^7.0.3",
     "mkdirp": "^0.5.1",
     "promise": "^7.1.1"
