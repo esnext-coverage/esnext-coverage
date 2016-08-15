@@ -11,11 +11,20 @@ program
   .option('-o --out-file [file]', 'Write the result to a file')
   .action(require('../lib/actions/cover'));
 
+//
+// instrument
+// --------------------
+
 program
-  .command('instrument <files>')
-  .option('-b --base-dir <dir>', 'Base directory of files to instrument')
-  .option('-o --out-dir <dir>', 'Write instrumented files to a directory')
-  .action(require('../lib/actions/instrument'));
+  .command('instrument [file]')
+  .description([
+    'Takes file contents from stdin or a file path as argument,',
+    'instruments the file, and writes the instrumented code to stdout',
+    'or to a file if "-o, --out-file" option is provided.'
+  ].join('\n  '))
+  .option('-o, --out-file [file]', 'write instrumented code to a file')
+  .action(require('../lib/actions/instrument'))
+  .on('--help', require('../lib/help/instrument'));
 
 program
   .command('collect [files]')

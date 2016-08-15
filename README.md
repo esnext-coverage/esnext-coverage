@@ -14,7 +14,7 @@ Usage: esnext-coverage [options] [command]
 Commands:
 
   cover [options] <files>
-  instrument [options] <files>
+  instrument [options] <file>
   collect [options] [files]
   extract [options] [coverage]
 
@@ -46,14 +46,57 @@ find *.js | esnext-coverage cover -f html > coverage.html
 esnext-coverage cover *.js -f html -o coverage.html
 ```
 
-### instrument
+### `instrument`
 
 ```sh
-find *.js | esnext-coverage instrument -o instrumented
+Usage: instrument [options] [file]
+
+Takes file contents from stdin or a file path as argument,
+instruments the file, and writes the instrumented code to stdout
+or to a file if "-o, --out-file" option is provided.
+
+Options:
+
+  -h, --help             output usage information
+  -o, --out-file [file]  write instrumented code to a file
+```
+#### `instrument` CLI usage
+
+Instrument a file and write output to stdout:  
+```sh
+esnext-coverage instrument foo.js
 ```
 
+Take code from stdin, instrument it, and write output to stdout:
 ```sh
-esnext-coverage instrument *.js -o instrumented
+cat foo.js | esnext-coverage instrument
+```
+
+Instrument a file and write output to a file in existing directory:
+```sh
+esnext-coverage instrument foo.js > foo.instrumented.js
+```
+
+Instrument a file and write output to a file in a new directory. Intermediate directories will be created as required (same as mkdir -p):
+
+```sh
+esnext-coverage instrument foo.js -o a/b/c/foo.instrumented.js
+```
+
+To instrument multiple files use:
+
+```sh
+find src -name '*.js' -type f | \
+  while IFS= read -r file; do
+    esnext-coverage instrument "$file" -o ${file/src/dest}
+  done
+```
+
+A simpler way to instrument multiple files (requires globstar option and bash 4):
+```sh
+for file in src/{,**/}*.js; do
+  esnext-coverage instrument "$file" -o ${file/src/dest}
+done
 ```
 
 ### collect

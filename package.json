@@ -5,14 +5,17 @@
   "main": "lib/esnext-coverage.js",
   "bin": "bin/esnext-coverage",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "tape -r babel-register test/spec/*.spec.js"
   },
   "author": "Oleg Sklyanchuk <sklyanchuk@gmail.com> (http://olegskl.com)",
   "license": "MIT",
   "devDependencies": {
+    "babel-core": "^6.13.2",
     "babel-eslint": "^6.1.2",
     "eslint": "^3.3.0",
-    "eslint-config-meetic": "^2.0.0"
+    "eslint-config-meetic": "^2.0.0",
+    "sinon": "^1.17.5",
+    "tape": "^4.6.0"
   },
   "dependencies": {
     "babel-plugin-transform-esnext-coverage": "^0.0.1",
