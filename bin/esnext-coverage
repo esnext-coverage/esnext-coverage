@@ -32,10 +32,16 @@ program
   .option('-o --out-file [file]', 'Write the result to a file')
   .action(require('../lib/actions/collect'));
 
+//
+// format
+// --------------------
+
 program
-  .command('extract [coverage]')
-  .option('-f --format [formatter]', 'Format the result')
-  .option('-o --out-file [file]', 'Write the result to a file')
-  .action(require('../lib/actions/extract'));
+  .command('format [file]')
+  .description('transforms coverage data to specified format')
+  .option('-f, --formatter [formatter]', 'formatter to use')
+  .option('-o, --out-file [file]', 'write the result to a file')
+  .action(require('../lib/actions/format'))
+  .on('--help', require('../lib/help/format'));
 
 program.parse(process.argv);
