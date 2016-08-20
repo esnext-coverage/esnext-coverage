@@ -17,11 +17,7 @@ program
 
 program
   .command('instrument [file]')
-  .description([
-    'Takes file contents from stdin or a file path as argument,',
-    'instruments the file, and writes the instrumented code to stdout',
-    'or to a file if "-o, --out-file" option is provided.'
-  ].join('\n  '))
+  .description('instruments code')
   .option('-o, --out-file [file]', 'write instrumented code to a file')
   .action(require('../lib/actions/instrument'))
   .on('--help', require('../lib/help/instrument'));

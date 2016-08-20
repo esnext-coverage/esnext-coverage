@@ -14,7 +14,7 @@ Usage: esnext-coverage [options] [command]
 Commands:
 
   cover [options] <files>
-  instrument [options] <file>
+  instrument [options] [file]  instruments code
   collect [options] [files]
   format [options] [file]      transforms coverage data to specified format
 
