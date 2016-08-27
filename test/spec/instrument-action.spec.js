@@ -1,7 +1,7 @@
 /* eslint-disable no-sync */
 
 import test from 'tape';
-import {stub, spy} from 'sinon';
+import {stub} from 'sinon';
 import instrumentAction from '../../lib/actions/instrument';
 
 test('instrumentAction should be a function', t => {
@@ -15,17 +15,15 @@ test('instrumentAction should be a function', t => {
 
 test('instrumentAction should output instrumented code to stdout', t => {
   // Given
-  const fs = require('fs');
   const path = require('path');
   const babel = require('babel-core');
+  const mockInstrumentation = 'foobar';
   const emptyFixtureFilePath = path.resolve('test/fixtures/empty.js');
-  const emptyFixtureInstrumented = fs.readFileSync(path.resolve('test/fixtures/empty.instrumented.js'), 'utf8');
 
   t.plan(2);
-  stub(process.stdout, 'write');
-  spy(babel, 'transformFileSync');
-  const stubbedStdoutWrite = process.stdout.write;
-  const stubbedBabelTransform = babel.transformFileSync;
+  const stubbedStdoutWrite = stub(process.stdout, 'write');
+  const stubbedBabelTransform = stub(babel, 'transformFileSync')
+    .returns({code: mockInstrumentation});
 
   // When
   instrumentAction('test/fixtures/empty.js');
@@ -39,7 +37,7 @@ test('instrumentAction should output instrumented code to stdout', t => {
     'applied transformation to the correct file'
   );
   t.ok(
-    stubbedStdoutWrite.calledWith(emptyFixtureInstrumented),
+    stubbedStdoutWrite.calledWith(mockInstrumentation),
     'wrote instrumented code to stdout'
   );
 
