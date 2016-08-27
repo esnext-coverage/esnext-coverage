@@ -4,8 +4,6 @@
 
 :warning: This is a work in progress. The API is not final, some CLI commands are not implemented and relevant repositories have not been migrated to esnext-coverage organization yet.
 
-esnext-coverage has been inspired by [Adana](https://github.com/adana-coverage).
-
 ## CLI usage
 
 ```sh
@@ -39,6 +37,10 @@ Transforms coverage data to the specified format.
 ## [Usage with test frameworks](docs/testing-tools.md)
 
 :warning: Interoperability with test frameworks (Tape, Mocha, ...) is a work in progress.
+
+## Prior art
+
+esnext-coverage has been inspired by [Adana](https://github.com/adana-coverage).
 
 ## License
 
