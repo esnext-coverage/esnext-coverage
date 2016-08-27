@@ -28,7 +28,7 @@ program
 
 program
   .command('format [file]')
-  .description('transforms coverage data to specified format')
+  .description('formats coverage data')
   .option('-f, --formatter [formatter]', 'formatter to use')
   .option('-o, --out-file [file]', 'write the result to a file')
   .action(require('../lib/actions/format'))

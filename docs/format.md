@@ -3,7 +3,7 @@
 ```sh
 Usage: format [options] [file]
 
-transforms coverage data to specified format
+formats coverage data
 
 Options:
 

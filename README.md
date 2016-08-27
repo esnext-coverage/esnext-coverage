@@ -13,7 +13,7 @@ Commands:
 
   instrument [options] [file]  instruments code
   collect [options] [files]
-  format [options] [file]      transforms coverage data to specified format
+  format [options] [file]      formats coverage data
 
 Options:
 
