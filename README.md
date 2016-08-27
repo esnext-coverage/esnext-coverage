@@ -23,156 +23,22 @@ Options:
   -V, --version  output the version number
 ```
 
-### `instrument`
+### [`instrument`](docs/instrument.md)
 
-```sh
-Usage: instrument [options] [file]
+Reads code from stdin or from a file, instruments it, and writes the instrumented code to stdout or to a file.
 
-Takes file contents from stdin or a file path as argument,
-instruments the file, and writes the instrumented code to stdout
-or to a file if "-o, --out-file" option is provided.
+### [`collect`](docs/collect.md)
 
-Options:
+Runs instrumented files, collects and outputs code coverage data.  
+:warning: `collect` API is a work in progress.
 
-  -h, --help             output usage information
-  -o, --out-file [file]  write instrumented code to a file
-```
-#### `instrument` CLI usage
+### [`format`](docs/format.md)
 
-Instrument a file and write output to stdout:  
-```sh
-esnext-coverage instrument foo.js
-```
+Transforms coverage data to the specified format.
 
-Take code from stdin, instrument it, and write output to stdout:
-```sh
-cat foo.js | esnext-coverage instrument
-```
+## [Usage with test frameworks](docs/testing-tools.md)
 
-Instrument a file and write output to a file in existing directory:
-```sh
-esnext-coverage instrument foo.js > foo.instrumented.js
-```
-
-Instrument a file and write output to a file in a new directory. Intermediate directories will be created as required (same as mkdir -p):
-
-```sh
-esnext-coverage instrument foo.js -o a/b/c/foo.instrumented.js
-```
-
-To instrument multiple files use:
-
-```sh
-find src -name '*.js' -type f | \
-  while IFS= read -r file; do
-    esnext-coverage instrument "$file" -o ${file/src/dest}
-  done
-```
-
-A simpler way to instrument multiple files (requires globstar option and bash 4):
-```sh
-for file in src/{,**/}*.js; do
-  esnext-coverage instrument "$file" -o ${file/src/dest}
-done
-```
-
-### collect
-
-Run instrumented files, collect and output code coverage data:
-
-```sh
-find *.js | esnext-coverage collect > coverage.json
-```
-
-```sh
-esnext-coverage collect *.js -o coverage.json
-```
-
-### `format`
-
-```sh
-Usage: format [options] [file]
-
-transforms coverage data to specified format
-
-Options:
-
-  -h, --help                   output usage information
-  -f, --formatter [formatter]  formatter to use
-  -o, --out-file [file]        write the result to a file
-```
-
-#### `format` CLI usage
-
-Read coverage data from a file, format it as HTML, and write output to stdout:
-
-```sh
-esnext-coverage format coverage.json -f html
-```
-
-Read coverage data from stdin, format it as HTML, and write output to stdout:
-
-```sh
-cat coverage.json | esnext-coverage format -f html
-```
-
-Read coverage data from a file, format it as HTML, and write output to a file in existing directory:
-
-```sh
-esnext-coverage format coverage.json -f html > coverage.html
-```
-
-Read coverage data from a file, format it as HTML, and write output to a file in a new directory, creating intermediate directories as required:
-
-```sh
-esnext-coverage format coverage.json -f html -o a/b/c/coverage.html
-```
-
-Format multiple files as HTML:
-
-```sh
-for file in reports/coverage/*.json; do
-  esnext-coverage format "$file" -f html -o ${file/json/html}
-done
-```
-
-## Usage with Mocha
-
-:warning: Interoperability with Mocha and other testing tools is a work in progress.
-
-First, configure your `.babelrc` to use environment variables:
-
-```json
-{
-  "env": {
-    "test": {
-      "plugins": [
-        "esnext-coverage"
-      ]
-    }
-  }
-}
-```
-
-Then add esnext-coverage options to `package.json` or `.esnext-coverage.json` configuration file:
-
-```json
-{
-  "reportDir": "reports/coverage",
-  "reporters": [
-    {"formatter": "html", "outFile": "coverage.html"}
-  ]
-}
-```
-
-Finally, require esnext-coverage when running mocha:
-
-```sh
-NODE_ENV="test" mocha \
-  --require esnext-coverage \
-  --compilers js:babel-register \
-  *.spec.js
-```
+:warning: Interoperability with test frameworks (Tape, Mocha, ...) is a work in progress.
 
 ## License
 
