@@ -13,7 +13,6 @@ Usage: esnext-coverage [options] [command]
 
 Commands:
 
-  cover [options] <files>
   instrument [options] [file]  instruments code
   collect [options] [files]
   format [options] [file]      transforms coverage data to specified format
@@ -22,28 +21,6 @@ Options:
 
   -h, --help     output usage information
   -V, --version  output the version number
-```
-
-### cover
-
-Instrument and run files, collect and output code coverage:
-
-```sh
-find *.js | esnext-coverage cover > coverage.json
-```
-
-```sh
-esnext-coverage cover *.js -o coverage.json
-```
-
-Instrument and run files, collect code coverage data, and generate an HTML report:
-
-```sh
-find *.js | esnext-coverage cover -f html > coverage.html
-```
-
-```sh
-esnext-coverage cover *.js -f html -o coverage.html
 ```
 
 ### `instrument`
