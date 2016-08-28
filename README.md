@@ -4,6 +4,12 @@
 
 :warning: This is a work in progress. The API is not final, some CLI commands are not implemented and relevant repositories have not been migrated to esnext-coverage organization yet.
 
+## Installation
+
+```sh
+npm install --save-dev esnext-coverage
+```
+
 ## Usage with test frameworks
 
 See [esnext-coverage-examples](https://github.com/esnext-coverage/esnext-coverage-examples) repository for more details.
@@ -11,14 +17,12 @@ See [esnext-coverage-examples](https://github.com/esnext-coverage/esnext-coverag
 ### [tape]
 
 ```sh
-npm install --save-dev tape esnext-coverage
 tape -r esnext-coverage test/*.js
 ```
 
 ### [mocha]
 
 ```sh
-npm install --save-dev mocha esnext-coverage
 mocha -r esnext-coverage test/*.js
 ```
 
