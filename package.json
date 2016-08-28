@@ -3,7 +3,9 @@
   "version": "0.0.1",
   "description": "Modular coverage tools for the modern web",
   "main": "lib/esnext-coverage.js",
-  "bin": "bin/esnext-coverage",
+  "bin": {
+    "esnext-coverage": "bin/esnext-coverage"
+  },
   "scripts": {
     "test": "tape -r babel-register test/spec/*.spec.js"
   },
