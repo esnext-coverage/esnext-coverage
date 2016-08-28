@@ -4,6 +4,24 @@
 
 :warning: This is a work in progress. The API is not final, some CLI commands are not implemented and relevant repositories have not been migrated to esnext-coverage organization yet.
 
+## Usage with test frameworks
+
+See [esnext-coverage-examples](https://github.com/esnext-coverage/esnext-coverage-examples) repository for more details.
+
+### [tape]
+
+```sh
+npm install --save-dev tape esnext-coverage
+tape -r esnext-coverage test/*.js
+```
+
+### [mocha]
+
+```sh
+npm install --save-dev mocha esnext-coverage
+mocha -r esnext-coverage test/*.js
+```
+
 ## CLI usage
 
 ```sh
@@ -34,10 +52,6 @@ Runs instrumented files, collects and outputs code coverage data.
 
 Transforms coverage data to the specified format.
 
-## [Usage with test frameworks](docs/testing-tools.md)
-
-:warning: Interoperability with test frameworks (Tape, Mocha, ...) is a work in progress.
-
 ## Prior art
 
 esnext-coverage has been inspired by [Adana](https://github.com/adana-coverage).
@@ -45,3 +59,7 @@ esnext-coverage has been inspired by [Adana](https://github.com/adana-coverage).
 ## License
 
 [MIT License](http://opensource.org/licenses/MIT)
+
+
+[tape]: https://github.com/substack/tape
+[mocha]: https://github.com/mochajs/mocha
