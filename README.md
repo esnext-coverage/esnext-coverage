@@ -14,16 +14,30 @@ npm install --save-dev esnext-coverage
 
 See [esnext-coverage-examples](https://github.com/esnext-coverage/esnext-coverage-examples) repository for more details.
 
-### [tape]
+### [Tape]
+
+Require esnext-coverage when running Tape:
 
 ```sh
 tape -r esnext-coverage test/*.js
 ```
 
-### [mocha]
+### [Mocha]
+
+Require esnext-coverage when running Mocha:
 
 ```sh
 mocha -r esnext-coverage test/*.js
+```
+
+### [Jasmine]
+
+Replace babel-register with esnext-coverage in the list of Jasmine helpers:
+
+```json
+"helpers": [
+  "../node_modules/esnext-coverage/lib/esnext-coverage.js"
+]
 ```
 
 ## CLI usage
@@ -67,3 +81,4 @@ esnext-coverage has been inspired by [Adana](https://github.com/adana-coverage).
 
 [tape]: https://github.com/substack/tape
 [mocha]: https://github.com/mochajs/mocha
+[jasmine]: https://github.com/jasmine/jasmine
