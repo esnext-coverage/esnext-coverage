@@ -1,5 +1,7 @@
 # esnext-coverage
 
+[![NPM version](http://img.shields.io/npm/v/esnext-coverage.svg)](https://www.npmjs.org/package/esnext-coverage)
+
 **Modular coverage tools for the modern web.**
 
 :warning: This is a work in progress. The API is not final, some CLI commands are not implemented and relevant repositories have not been migrated to esnext-coverage organization yet.
