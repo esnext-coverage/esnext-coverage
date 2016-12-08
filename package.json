@@ -1,6 +1,6 @@
 {
   "name": "esnext-coverage",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Modular coverage tools for the modern web",
   "main": "lib/esnext-coverage.js",
   "bin": {
