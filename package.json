@@ -7,20 +7,22 @@
     "esnext-coverage": "bin/esnext-coverage"
   },
   "scripts": {
+    "lint": "eslint {src,test}/**/*.js",
     "test": "tape -r ./lib/esnext-coverage test/spec/*.spec.js"
   },
   "author": "Oleg Sklyanchuk <sklyanchuk@gmail.com> (http://olegskl.com)",
   "license": "MIT",
   "devDependencies": {
     "babel-core": "^6.14.0",
-    "eslint": "^3.4.0",
-    "eslint-config-meetic": "^2.0.0",
+    "eslint": "^3.11.1",
+    "eslint-config-meetic": "^3.0.0",
     "esnext-coverage-format-text": "^0.0.4",
     "sinon": "^1.17.5",
     "tape": "^4.6.0"
   },
   "dependencies": {
-    "babel-plugin-transform-esnext-coverage": "^0.0.1",
+    "babel-plugin-transform-esnext-coverage": "^0.0.2",
+    "babel-register": "^6.18.0",
     "chalk": "^1.1.3",
     "commander": "^2.9.0",
     "glob": "^7.0.6",
@@ -28,9 +30,15 @@
     "promise": "^7.1.1"
   },
   "esnextcoverage": {
-    "only": ["lib/*.js", "lib/**/*.js"],
+    "only": [
+      "lib/*.js",
+      "lib/**/*.js"
+    ],
     "reporters": [
-      {"formatter": "text", "console": true}
+      {
+        "formatter": "text",
+        "console": true
+      }
     ],
     "thresholds": {
       "global": {
