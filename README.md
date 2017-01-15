@@ -4,8 +4,6 @@
 
 **Modular coverage tools for the modern web.**
 
-:warning: This is a work in progress. The API is not final, some CLI commands are not implemented and relevant repositories have not been migrated to esnext-coverage organization yet.
-
 ## Installation
 
 ```sh
