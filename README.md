@@ -142,7 +142,7 @@ Usage: esnext-coverage [options] [command]
 Commands:
 
   instrument [options] [file]  instruments code
-  collect [options] [files]
+  collect [options] [file]     collects coverage data
   format [options] [file]      formats coverage data
 
 Options:
@@ -157,8 +157,7 @@ Reads code from stdin or from a file, instruments it, and writes the instrumente
 
 ### [`collect`](docs/collect.md)
 
-Runs instrumented files, collects and outputs code coverage data.  
-:warning: `collect` API is a work in progress.
+Reads code from stdin or from a file, collects coverage data, and writes the result to stdout or to a file.
 
 ### [`format`](docs/format.md)
 
