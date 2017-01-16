@@ -18,11 +18,15 @@ program
   .action(require('../lib/actions/instrument'))
   .on('--help', require('../lib/help/instrument'));
 
+//
+// collect
+// --------------------
 program
-  .command('collect [files]')
-  .option('-f --format [formatter]', 'Format the result')
+  .command('collect [file]')
+  .description('collects coverage from instrumented code')
   .option('-o --out-file [file]', 'Write the result to a file')
-  .action(require('../lib/actions/collect'));
+  .action(require('../lib/actions/collect'))
+  .on('--help', require('../lib/help/collect'));
 
 //
 // format
