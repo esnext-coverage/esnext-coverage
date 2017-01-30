@@ -1,5 +1,5 @@
 {
-  "extends": "meetic/configurations/es5",
+  "extends": "meetic",
   "env": {
     "node": true
   },
