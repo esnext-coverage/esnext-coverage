@@ -64,11 +64,11 @@ reporters: [
 ]
 ```
 
-If reporters are not specified, a default reporter is used with `JSON.stringify` as formatter and `'reports/coverage/coverage.json'` file as output:
+If reporters are not specified, a default reporter is used with `'json'` as formatter and `'reports/coverage/coverage.json'` file as output:
 
 ```js
 reporters: [
-  {formatter: JSON.stringify, outFile: 'reports/coverage/coverage.json'}
+  {formatter: 'json', outFile: 'reports/coverage/coverage.json'}
 ]
 ```
 
